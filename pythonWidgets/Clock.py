@@ -23,8 +23,7 @@ class ClockWidget(QWidget):
         super().paintEvent(event)
 
         painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing);
-
+        painter.setRenderHint(QPainter.Antialiasing)
         # On dessine le cercle de l'horloge avec un dégradé autour
         radius = 0.95 * (min(self.width(), self.height()) / 2)
 
