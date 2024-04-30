@@ -85,6 +85,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.resize(600, 600)
+        self.setWindowTitle("Example of digital clock")
 
         # We instantiate the new widget and add it to the window
         clock = DigitalClockWidget()

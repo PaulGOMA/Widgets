@@ -2,7 +2,7 @@ import math
 import sys
 import random
 
-from PySide6.QtCore import QPointF, QPoint, Qt
+from PySide6.QtCore import QPointF, QPoint, Qt, QTimer
 from PySide6.QtGui import QPainter, QColor, QLinearGradient, QPen
 from PySide6.QtGui import QPaintEvent
 from PySide6.QtWidgets import QMainWindow, QWidget, QApplication
@@ -14,6 +14,17 @@ class CompassWidget(QWidget):
 
     def __init__(self):
         super().__init__()
+
+        self.angleRandom = 0
+        print(self.angleRandom)
+        self.timer = QTimer()
+
+        self.timer.timeout.connect(self.updateCompass())
+        self.timer.start(1000)
+
+    def updateCompass(self):
+        self.angleRandom = math.radians(random.randint(0, 360))
+        self.update()
 
     def paintEvent(self, event: QPaintEvent) -> None:
         super().paintEvent(event)
@@ -42,7 +53,7 @@ class CompassWidget(QWidget):
         font.setPointSize(16)
         painter.setFont(font)
 
-        angle = (-math.pi / 2) + 0
+        angle = (-math.pi / 2) + self.angleRandom
         # randomAngle = random.randint(0, 360)
         declination = 0
         for step in range(12 * 3):
